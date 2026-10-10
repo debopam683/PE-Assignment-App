@@ -14,15 +14,20 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="flex items-center justify-between px-6 py-3.5 bg-slate-900/90 border-b border-slate-800/80 backdrop-blur-md sticky top-0 z-30">
-      {/* Zone 1: Single text element wordmark */}
+      {/* Zone 1: Title and Author Header */}
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-sm shadow-cyan-500/20">
+        <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-sm shadow-cyan-500/20 shrink-0">
           <Zap className="w-4 h-4 text-white" />
         </div>
-        <div className="flex flex-col">
-          <span className="text-base font-bold tracking-tight text-white flex items-center gap-2">
-            VoltFlow
-            <span className="text-xs font-normal text-slate-400">| Power Electronics Lab</span>
+        <div className="flex items-center">
+          <span className="text-sm sm:text-base font-bold tracking-tight text-white flex items-center gap-2 whitespace-nowrap">
+            <span>Power Electronics</span>
+            <span className="text-slate-500 font-normal">|</span>
+            <span className="font-semibold text-cyan-300">Debopam Hait</span>
+            <span className="text-slate-500 font-normal">|</span>
+            <span className="font-mono text-xs font-semibold text-amber-300 bg-amber-950/70 px-2 py-0.5 rounded border border-amber-800/60">
+              24EE10050
+            </span>
           </span>
         </div>
       </div>
