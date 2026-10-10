@@ -349,10 +349,10 @@ export const CircuitSchematic: React.FC<CircuitSchematicProps> = ({
       </div>
 
       {/* SVG Canvas Area */}
-      <div className="flex-1 flex items-center justify-center p-3 overflow-auto min-h-[300px]">
+      <div className="flex-1 flex flex-col items-center justify-center p-3 overflow-hidden min-h-0">
         <svg
           viewBox="0 0 540 280"
-          className="w-full max-w-[580px] h-auto select-none"
+          className="w-full max-w-[540px] max-h-[360px] h-auto my-auto select-none"
           style={{ filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.5))' }}
         >
           <defs>

@@ -118,17 +118,17 @@ export default function App() {
           <MetricsBar metrics={metrics} />
 
           {/* Interactive Split View: Schematic alongside Waveform Viewer */}
-          <div className="flex-1 grid grid-cols-1 xl:grid-cols-12 gap-3 min-h-[460px]">
-            {/* Left Box: Schematic Diagram (5 cols on XL) */}
-            <div className="xl:col-span-5 h-[360px] xl:h-auto min-h-[340px]">
+          <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-3 min-h-[460px] lg:h-[calc(100vh-210px)] lg:min-h-[460px] lg:max-h-[620px]">
+            {/* Left Box: Schematic Diagram (5 cols on LG) */}
+            <div className="lg:col-span-5 h-[380px] lg:h-full min-h-[340px] flex flex-col">
               <CircuitSchematic
                 config={config}
                 currentPoint={currentPoint}
               />
             </div>
 
-            {/* Right Box: Waveform Oscilloscope (7 cols on XL) */}
-            <div className="xl:col-span-7 h-[420px] xl:h-auto min-h-[400px]">
+            {/* Right Box: Waveform Oscilloscope (7 cols on LG) */}
+            <div className="lg:col-span-7 h-[420px] lg:h-full min-h-[380px] flex flex-col">
               <WaveformViewer
                 simulationPoints={points}
                 config={config}

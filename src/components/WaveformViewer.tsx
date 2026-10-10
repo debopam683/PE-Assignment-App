@@ -55,18 +55,25 @@ export const WaveformViewer: React.FC<WaveformViewerProps> = ({
   // Canvas drawing effect
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || !displayPoints.length) return;
+    const container = containerRef.current;
+    if (!canvas || !container || !displayPoints.length) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Handle high DPI
+    // Handle high DPI using stable container bounding size
     const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    if (width <= 0 || height <= 0) return;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
+    const targetW = Math.round(width * dpr);
+    const targetH = Math.round(height * dpr);
+    if (canvas.width !== targetW || canvas.height !== targetH) {
+      canvas.width = targetW;
+      canvas.height = targetH;
+    }
+
+    ctx.save();
     ctx.scale(dpr, dpr);
 
     // Layout
@@ -322,6 +329,8 @@ export const WaveformViewer: React.FC<WaveformViewerProps> = ({
       ctx.stroke();
       ctx.setLineDash([]);
     }
+
+    ctx.restore();
   }, [
     displayPoints,
     config,
@@ -486,13 +495,13 @@ export const WaveformViewer: React.FC<WaveformViewerProps> = ({
       </div>
 
       {/* Main Canvas Plot Area */}
-      <div ref={containerRef} className="relative flex-1 min-h-[300px] w-full">
+      <div ref={containerRef} className="relative flex-1 min-h-[260px] w-full overflow-hidden">
         <canvas
           ref={canvasRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           onClick={handleCanvasClick}
-          className="w-full h-full block cursor-crosshair"
+          className="absolute inset-0 w-full h-full block cursor-crosshair"
         />
 
         {/* Hover Inspector Tooltip Overlay */}
